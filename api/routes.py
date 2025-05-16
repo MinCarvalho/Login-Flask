@@ -15,7 +15,7 @@ def login():
     usuario = Usuario.query.filter_by(email_user=email).first()
 
     if usuario and check_password_hash(usuario.senha_user, senha):
-        flash('Login realizado com sucesso!', 'success')
+        
         return render_template('home.html', nome_usuario=usuario.nome_user)
     else:
         flash('E-mail ou senha incorretos', 'error')
