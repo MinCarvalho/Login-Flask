@@ -1,7 +1,7 @@
 from flask import render_template, request, url_for, redirect, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.model import Usuario
-from api import app, db
+from api.index import app, db
 
 @app.route('/')
 def index():

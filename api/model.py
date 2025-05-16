@@ -1,4 +1,4 @@
-from api import db
+from api.index import db
 
 class Usuario(db.Model):
     id_user = db.Column(db.Integer, primary_key=True, autoincrement=True)
