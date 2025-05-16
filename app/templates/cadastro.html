@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/cara-negra-de-gato.png') }}" type="image/x-icon">
+    <title>Cadastro</title>
+</head>
+<body>
+    <nav>
+        <li>Y Carvalho</li>
+    </nav>
+    
+    <div class="container">
+        <form class="login-form" method="post" action="{{ url_for('cadastro') }}">
+            <h1>Cadastre-se</h1>
+            
+            <div class="input-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome">
+            </div>
+            
+            
+            <div class="input-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="Seu e-mail">
+            </div>
+            
+            
+            <div class="input-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Escolha uma senha">
+            </div>
+           
+            
+            <button type="submit">CADASTRAR</button>
+        </form>
+        
+        <p>Já tem uma conta? <a href="{{ url_for('index') }}">Faça login</a></p>
+    </div>
+    
+</body>
+</html>
