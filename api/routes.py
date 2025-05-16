@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect, flash, session
+from flask import render_template, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.model import Usuario
 from api.index import app, db
@@ -30,16 +30,16 @@ def cadastro():
         email = request.form.get('email')
         senha = request.form.get('senha')
 
-        # Validações básicas
+        
         if not all([nome, email, senha]):
             flash('Por favor, preencha todos os campos', 'error')
-            return redirect(url_for('cadastro'))
+            return render_template('cadastro.html')
 
-        # Verifica se usuário já existe
+        
         usuario_existente = Usuario.query.filter_by(email_user=email).first()
         if usuario_existente:
             flash('E-mail já cadastrado', 'error')
-            return redirect(url_for('cadastro'))
+            return render_template('cadastro.html')
 
         try:
             novo_usuario = Usuario(
@@ -52,13 +52,13 @@ def cadastro():
             db.session.commit()
             
             flash('Cadastro realizado com sucesso! Faça login', 'success')
-            return redirect(url_for('login'))
+            return render_template('index.html')
             
         except Exception as e:
             db.session.rollback()
             app.logger.error(f'Erro no cadastro: {str(e)}')
             flash('Ocorreu um erro durante o cadastro. Por favor, tente novamente.', 'error')
-            return redirect(url_for('cadastro'))
+            return render_template('cadastro.html')
 
     return render_template('cadastro.html')
 
