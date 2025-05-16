@@ -1,7 +1,10 @@
-from flask import render_template, request, flash
+from flask import render_template, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from api.model import Usuario
 from api.index import app, db
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -64,6 +67,8 @@ def cadastro():
 
 
 
+
+
 if __name__ == '__main__':
-   with app.app_context():
-    db.create_all()
+   
+    app.run(debug=True)
